@@ -1,0 +1,78 @@
+
+
+$draw_number = ["01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49"];
+$draw_number = explode(",",$draw_number[0]);
+shuffle($draw_number);
+$draw_number = array_slice($draw_number,0,7);
+echo "Draw number : ".implode(",",$draw_number)."<br> <br> <br> <br>";
+
+$winning_digits = $draw_number;
+$winning_digits = false ? ["1","1","2"] : array_slice($draw_number,0,20);
+
+$zodaic_signs_and_names =[
+   "rat",
+   "ox" ,
+   "tiger" ,
+   "rabbit",
+   "dragon",
+   "snake" ,
+   "horse" ,
+   "goat"  ,
+   "monkey",
+   "rooster" ,
+   "dog",
+   "pig",
+]; 
+
+$zodaic_signs_and_numbers = [
+    ["04","16","28","40"],
+    ["03","15","27","39"],
+    ["02","14","26","38"],
+    ["01","13","25","37","49"],
+    ["12","24","36","48"],
+    ["11","23","35","47"],
+    ["10","22","34","46"],
+    ["09","21","33","45"],
+    ["08","20","32","44"],
+    ["07","19","31","43"],
+    ["06","18","30","42"],
+    ["05","17","29","41"],
+]; 
+
+
+  
+
+$found_zodiac_signs  = [];
+
+foreach ($zodaic_signs_and_numbers as $key => $zodaic_array) {
+   # code...
+
+ $found_zodiac_signs[$zodaic_signs_and_names[$key]] = (7 + count($zodaic_array)) -  count(array_unique([...$zodaic_array,...$winning_digits]));
+
+}
+$numbers = array_values($found_zodiac_signs);
+echo "<pre>";
+print_r($found_zodiac_signs);
+
+$select = [3,5,7];
+$count   = 0;
+
+foreach ($numbers as $value) {
+   if ($value !== 0) {
+       $count++;
+   }
+}
+
+echo $count;
+foreach ($select as $selected) {
+    $result = ($count % 2 !== 0) ? "Odd" : "Even";
+    $result1 = ($selected% 2 !== 0) ? "Odd" : "Even";
+    }
+    echo $result."  ";
+    echo $result1." ";
+    echo ( ($result == $result1)) ? "win" : "loss";
+if ($count % 2 === 0 && $count == $select) {
+    echo "The count of animals (excluding 0 count) is even.";
+} else {
+    echo "The count of animals (excluding 0 count) is odd.";
+}
