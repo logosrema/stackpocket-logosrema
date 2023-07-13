@@ -1,0 +1,61 @@
+<?php
+ini_set("display_errors",1);
+
+$arrballs = ["ball1","ball2","ball3", "ball4","ball5","ball6",];
+$arrdrawNumber = [9,5,3,7,45,48];
+$sell = ["big","small","odd","even","bsum","ssum","osum","esum","tbig","tsmall","rballs","gballs","bballs"];
+list($ball1,$ball2,$ball3,$ball4,$ball5,$ball6) = $arrdrawNumber;
+
+//$spl = int(end(str_split((int)$ball1))) >= 5 ;
+$red    =[ 1 ,2 ,7 ,8 ,12 ,13 ,18 ,19 ,23 ,24 ,29 ,30 ,34 ,35 ,40 ,45 ,46];
+$blue   = [3 ,4 ,9 ,10 ,14 ,15 ,20 ,25 ,26 ,31 ,36 ,37 ,41 ,42 ,47 ,48];
+$green  = [05 ,06 ,11 ,16 ,17 ,21 ,22 ,27 ,28 ,32 ,33 ,38 ,39 ,43 ,44 ,49] ;
+
+if (in_array("ball1", $arrballs)) {
+    
+    //run loop to check for ball1
+
+        if (($ball1 >= 25 && $sell[0] == "big") || ($ball1 <= 24 && $sell[1] == "small")) {
+            echo ($ball1 >= 25) ? "Win Big" : "Win Small";
+        }
+
+        if (($ball1 % 2 != 0 && $sell[2] == "odd") || ($ball1 % 2 == 0 && $sell[3] == "even")) {
+            echo ($ball1 % 2 != 0) ? "Win Odd" : "Win Even";
+        }
+
+        if ((array_sum(str_split((int)$ball1)) >= 7 && $sell[4] == "bsum") || (array_sum(str_split((int)$ball1)) <= 6 && $sell[5] == "ssum")) {
+            echo (array_sum(str_split((int)$ball1)) >= 7) ? "Win Bsum" : "Win Ssum";
+        }
+
+        if ((array_sum(str_split((int)$ball1)) % 2 != 0 && $sell[6] == "osum") || (array_sum(str_split((int)$ball1)) % 2 == 0 && $sell[7] == "esum")) {
+            echo (array_sum(str_split((int)$ball1)) % 2 != 0 ) ? "Win Osum" : "Win Esum";
+        }
+        
+        $spl = str_split((int)$ball1);
+        $cheker = end($spl);
+        if (( $cheker >= 5 && $sell[8] == "tbig") || ($cheker <= 4 && $sell[9] == "tsmall")) {
+            echo ($cheker >= 5) ? "Win Tbig" : "Win Tsmall";
+        }
+
+        //red
+        if (in_array($ball1, $red) && $sell[10] == "rballs") {
+            echo (in_array($ball1, $red)) ? "Red Won" : "";
+        }
+
+        //red
+        if (in_array($ball1, $blue)  && $sell[11] == "bballs") {
+            echo (in_array($ball1, $blue)) ? "Win Odd" : "";
+        }
+
+        //red
+        if (in_array($ball1, $green)  && $sell[12] == "gballs") {
+            echo (in_array($ball1, $blue)) ? "Win Odd" : "";
+        }
+
+  
+
+} else {
+   
+    echo "Not Found!!";
+
+}
